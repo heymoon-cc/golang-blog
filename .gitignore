@@ -9,3 +9,5 @@ main
 *.log
 static/mix-manifest.json
 .env
+files
+
