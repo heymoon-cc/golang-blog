@@ -6,3 +6,6 @@ node.dockerized:
 
 run.dockerized: node.dockerized
 	docker-compose up -d
+
+push:
+	docker build -t heymoon/golang-blog:latest --target blog . && docker push heymoon/golang-blog:latest

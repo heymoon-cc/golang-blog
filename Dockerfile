@@ -9,7 +9,7 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 RUN go build -o blog
 
-FROM busybox as base
+FROM busybox as blog
 WORKDIR /etc/blog
 COPY --from=builder /code/blog /
 ADD ./ui /etc/blog/ui

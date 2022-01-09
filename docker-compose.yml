@@ -1,11 +1,13 @@
-version: '3'
+version: '3.4'
 
 services:
   mongo:
     image: mongo
 
   blog:
-    build: .
+    build:
+      context: .
+      target: blog
     environment:
       - MONGO_URI=mongodb://mongo
       - USER=${USERNAME:-admin}
