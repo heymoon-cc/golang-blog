@@ -1,0 +1,15 @@
+{{define "title"}}{{ .Tag }}{{end}}
+
+{{define "main"}}
+  {{ range .Articles }}
+    <div class="row g-5">
+      <div class="col-md-8">
+        <article class="blog-post">
+          <a href="/article/{{ .ID }}"><h2 class="blog-post-title">{{ .Title }}</h2></a>
+          <p class="blog-post-meta">{{ .CreatedAt.Format "02.01.2006 15:04:05" }}</p>
+        </article>
+      </div>
+    </div>
+  {{ end }}
+{{end}}
+{{template "base" .}}

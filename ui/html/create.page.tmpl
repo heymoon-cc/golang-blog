@@ -1,0 +1,27 @@
+{{define "title"}}{{if .Title}}{{ .Title }}{{ else }}Новая запись{{ end }}{{end}}
+
+{{define "main"}}
+  <form id="save">
+    <div class="row g-3">
+      <div class="col-12">
+        <label for="title" class="form-label">Заголовок</label>
+        <input type="text" class="form-control" id="title" placeholder="Заголовок" required="" value="{{ .Title }}">
+      </div>
+      <div class="container-fluid pb-3">
+        <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+          <div class="bg-light border rounded-3">
+            <textarea id="article" class="form-control" rows="25" cols="45">{{ .Content }}</textarea>
+          </div>
+          <div id="preview" class="bg-light border rounded-3">
+          </div>
+        </div>
+        <hr class="my-4">
+        <button class="w-100 btn btn-primary btn-lg">Сохранить</button>
+      </div>
+    </div>
+  </form>
+{{end}}
+{{template "base" .}}
+{{define "scripts"}}
+  <script src="/static/admin.js"></script>
+{{end}}

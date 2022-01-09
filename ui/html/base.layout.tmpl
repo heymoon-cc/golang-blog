@@ -1,0 +1,40 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8">
+  <title>{{template "title" .Main}} - {{ .Header.Title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/app.css"/>
+</head>
+<body>
+<header>
+  <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        {{ $page := .Page }}
+        {{ if not (eq $page "update" "create") }}
+          <li class="nav-item"><a data-tag="all" href="/" class="nav-link{{ if eq $page "index" }} active{{ end }}">All</a></li>
+        {{ end }}
+        {{ $article := .Main }}
+        {{ range $key, $value := .Header.Tags }}
+          <li class="nav-item"><a data-tag="{{ $key }}" href="/tag/{{ $key }}" class="nav-link{{ if eq $page "update" "create" }}
+            {{ if $article.HasTag $key }} active{{ end }}
+          {{ else }}{{ if eq $page $key }} active{{ end }}{{ end }}">{{ $value }}</a></li>
+        {{ end }}
+      </ul>
+    </header>
+  </div>
+</header>
+<main>
+  <div class="container">
+    {{template "main" .Main}}
+  </div>
+</main>
+<script src="/static/app.js"></script>
+{{template "scripts" .Main}}
+</body>
+</html>
+{{end}}
+{{define "scripts"}}
+{{end}}

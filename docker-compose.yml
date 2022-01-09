@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+
+  blog:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongo
+      - USER=${USERNAME:-admin}
+      - PASS=${PASSWORD:-admin}
+      - ADDR=:80
