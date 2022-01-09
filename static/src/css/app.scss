@@ -1,5 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
+img {
+  max-width: calc(100vw - 25px);
+}
+
 #preview {
   padding: 10px;
   img {
