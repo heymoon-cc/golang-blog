@@ -9,6 +9,7 @@ import (
 var tags *map[string]string
 var title string
 var host string
+var templates = make(map[string]*template.Template)
 
 func SetTitle(newTitle string) {
 	title = newTitle
@@ -37,11 +38,16 @@ type View struct {
 }
 
 func renderTemplate(url string, w http.ResponseWriter, data interface{}, name string) {
-	ts, err := template.ParseFiles(url, "./ui/html/base.layout.tmpl")
-	if err != nil {
-		log.Println(err.Error())
-		http.Error(w, "Internal Server Error", 500)
-		return
+	var err error
+	ts, found := templates[url]
+	if !found {
+		ts, err = template.ParseFiles(url, "./ui/html/base.layout.tmpl")
+		if err != nil {
+			log.Println(err.Error())
+			http.Error(w, "Internal Server Error", 500)
+			return
+		}
+		templates[url] = ts
 	}
 	view := View{}
 	view.Header.Host = host
