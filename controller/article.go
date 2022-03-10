@@ -18,6 +18,7 @@ type ArticleView struct {
 	Title      string
 	Content    template.HTML
 	CreatedAt  time.Time
+	Draft      bool
 	Authorized bool
 }
 
@@ -29,6 +30,7 @@ func createArticleView(article *model.Article, authorized bool) ArticleView {
 		article.Title,
 		template.HTML(content),
 		article.CreatedAt.Time(),
+		article.Draft,
 		authorized}
 }
 

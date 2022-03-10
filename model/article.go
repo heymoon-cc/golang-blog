@@ -17,6 +17,7 @@ type Article struct {
 	CreatedAt primitive.DateTime `bson:"created_at"`
 	UpdatedAt primitive.DateTime `bson:"updated_at"`
 	Tags      []string           `bson:"tags" json:"tags"`
+	Draft     bool               `bson:"draft" json:"draft"`
 }
 
 func (a *Article) HasTag(tag string) bool {
@@ -80,9 +81,9 @@ func ArticlesByQuery(query interface{}) *[]Article {
 }
 
 func ArticlesByTag(tag string) *[]Article {
-	return ArticlesByQuery(bson.M{"tags": tag})
+	return ArticlesByQuery(bson.M{"tags": tag, "draft": false})
 }
 
 func AllArticles() *[]Article {
-	return ArticlesByQuery(bson.M{})
+	return ArticlesByQuery(bson.M{"draft": false})
 }

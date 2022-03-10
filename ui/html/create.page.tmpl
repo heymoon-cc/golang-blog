@@ -17,6 +17,10 @@
         </div>
         <hr class="my-4">
         <button class="w-100 btn btn-primary btn-lg">Сохранить</button>
+        <div class="form-check">
+          <input id="draft" name="draft" type="checkbox" class="form-check-input"{{ if .Draft }} checked=""{{end}}>
+          <label class="form-check-label" for="draft">Черновик</label>
+        </div>
       </div>
     </div>
   </form>

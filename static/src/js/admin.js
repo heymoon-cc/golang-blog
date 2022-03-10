@@ -4,6 +4,7 @@ const converter = new showdown.Converter();
 /** @var preview HTMLDivElement */
 /** @var save HTMLFormElement */
 /** @var title HTMLInputElement */
+/** @var draft HTMLInputElement */
 const previewMd = () => {
   preview.innerHTML = converter.makeHtml(article.value);
 }
@@ -21,7 +22,8 @@ save.addEventListener('submit', (e) => {
     body: JSON.stringify({
       title: title.value,
       content: article.value,
-      tags: Array.from(tags)
+      tags: Array.from(tags),
+      draft: draft.checked
     })
   }).then((response) => {
     location.href = response.url;
