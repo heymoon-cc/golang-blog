@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 var tags *map[string]string
@@ -35,6 +36,7 @@ type View struct {
 	}
 	Page string
 	Main interface{}
+	Year int
 }
 
 func renderTemplate(url string, w http.ResponseWriter, data interface{}, name string) {
@@ -55,6 +57,7 @@ func renderTemplate(url string, w http.ResponseWriter, data interface{}, name st
 	view.Header.Tags = tags
 	view.Main = data
 	view.Page = name
+	view.Year = time.Now().Year()
 	err = ts.Execute(w, view)
 	if err != nil {
 		log.Println(err.Error())

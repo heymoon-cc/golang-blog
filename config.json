@@ -2,10 +2,8 @@
   "host": "heymoon.cc",
   "title": "heymoon dot cc",
   "tags": {
-    "linux": "Linux",
-    "music": "Music",
     "go": "Go",
     "js": "JS",
-    "other": "Other"
+    "php": "PHP"
   }
 }

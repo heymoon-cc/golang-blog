@@ -1,4 +1,5 @@
 {{define "base"}}
+{{ $page := .Page }}
 <!doctype html>
 <html lang='en'>
 <head>
@@ -6,13 +7,15 @@
   <title>{{template "title" .Main}} - {{ .Header.Title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/app.css"/>
+  {{ if eq $page "article" }}
+    <meta property="article:published_time" content="{{ .Main.CreatedAt.Format "2006-01-02T15:04:05" }}"/>
+  {{ end }}
 </head>
 <body>
 <header>
   <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
-        {{ $page := .Page }}
         {{ if not (eq $page "update" "create") }}
           <li class="nav-item"><a data-tag="all" href="/" class="nav-link{{ if eq $page "index" }} active{{ end }}">All</a></li>
         {{ end }}
@@ -31,6 +34,14 @@
     {{template "main" .Main}}
   </div>
 </main>
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a target="_blank" href="https://github.com/heymoon-cc" class="nav-link px-2 text-muted">GitHub</a></li>
+    </ul>
+    <p class="text-center text-muted">© {{ .Year }} {{ .Header.Title }}</p>
+  </footer>
+</div>
 <script src="/static/app.js"></script>
 {{template "scripts" .Main}}
 </body>
