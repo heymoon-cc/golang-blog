@@ -84,6 +84,10 @@ func ArticlesByTag(tag string) *[]Article {
 	return ArticlesByQuery(bson.M{"tags": tag, "draft": false})
 }
 
+func AllArticlesByTag(tag string) *[]Article {
+	return ArticlesByQuery(bson.M{"tags": tag})
+}
+
 func AllArticles() *[]Article {
 	return ArticlesByQuery(bson.M{"draft": false})
 }

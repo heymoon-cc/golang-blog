@@ -14,5 +14,6 @@ func getRouter() *mux.Router {
 	r.HandleFunc("/files/{file}", controller.FilesHandler).Methods("GET")
 	r.HandleFunc("/admin/create", controller.CreateArticleHandler).Methods("GET", "POST")
 	r.HandleFunc("/admin/update/{id}", controller.UpdateArticleHandler).Methods("GET", "POST")
+	r.HandleFunc("/{page}", controller.PageHandler)
 	return r
 }

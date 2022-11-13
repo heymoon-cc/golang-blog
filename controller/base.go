@@ -8,6 +8,7 @@ import (
 )
 
 var tags *map[string]string
+var pages *map[string]string
 var title string
 var host string
 var templates = make(map[string]*template.Template)
@@ -24,13 +25,22 @@ func SetTags(newTags *map[string]string) {
 	tags = newTags
 }
 
+func SetPages(newPages *map[string]string) {
+	pages = newPages
+}
+
 func GetTagName(tagCode string) string {
 	return (*tags)[tagCode]
+}
+
+func GetPageName(tagCode string) string {
+	return (*pages)[tagCode]
 }
 
 type View struct {
 	Header struct {
 		Tags  *map[string]string
+		Pages *map[string]string
 		Title string
 		Host  string
 	}
@@ -55,6 +65,7 @@ func renderTemplate(url string, w http.ResponseWriter, data interface{}, name st
 	view.Header.Host = host
 	view.Header.Title = title
 	view.Header.Tags = tags
+	view.Header.Pages = pages
 	view.Main = data
 	view.Page = name
 	view.Year = time.Now().Year()

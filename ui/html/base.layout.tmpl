@@ -25,6 +25,11 @@
             {{ if $article.HasTag $key }} active{{ end }}
           {{ else }}{{ if eq $page $key }} active{{ end }}{{ end }}">{{ $value }}</a></li>
         {{ end }}
+        {{ range $key, $value := .Header.Pages }}
+          <li class="nav-item"><a data-tag="{{ $key }}" href="/{{ $key }}" class="nav-link{{ if eq $page "update" "create" }}
+          {{ if $article.HasTag $key }} active{{ end }}
+        {{ else }}{{ if eq $page $key }} active{{ end }}{{ end }}">{{ $value }}</a></li>
+        {{ end }}
       </ul>
     </header>
   </div>
