@@ -15,6 +15,10 @@ func PageHandler(w http.ResponseWriter, r *http.Request) {
 	page := mux.Vars(r)["page"]
 	articles := model.AllArticlesByTag(page)
 	var view TagView
+	if !PageExists(page) {
+		NotFoundHandler(w, r)
+		return
+	}
 	view.Tag = GetPageName(page)
 	for _, article := range *articles {
 		view.Articles = append(view.Articles, createArticleView(&article, false))

@@ -15,6 +15,10 @@ func TagHandler(w http.ResponseWriter, r *http.Request) {
 	tag := mux.Vars(r)["tag"]
 	articles := model.ArticlesByTag(tag)
 	var view TagView
+	if !TagExists(tag) {
+		NotFoundHandler(w, r)
+		return
+	}
 	view.Tag = GetTagName(tag)
 	for _, article := range *articles {
 		view.Articles = append(view.Articles, createArticleView(&article, false))

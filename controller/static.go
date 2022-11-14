@@ -13,13 +13,13 @@ func handleStatic(dir string, w http.ResponseWriter, r *http.Request) {
 	file := mux.Vars(r)["file"]
 	data, err := os.Open(dir + "/" + file)
 	if err != nil {
-		http.NotFound(w, r)
+		NotFoundHandler(w, r)
 		return
 	}
 	w.Header().Set("Content-Type", mime.TypeByExtension(filepath.Ext(file)))
 	_, err = io.Copy(w, data)
 	if err != nil {
-		http.NotFound(w, r)
+		NotFoundHandler(w, r)
 		return
 	}
 }

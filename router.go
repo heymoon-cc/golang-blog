@@ -15,5 +15,6 @@ func getRouter() *mux.Router {
 	r.HandleFunc("/admin/create", controller.CreateArticleHandler).Methods("GET", "POST")
 	r.HandleFunc("/admin/update/{id}", controller.UpdateArticleHandler).Methods("GET", "POST")
 	r.HandleFunc("/{page}", controller.PageHandler)
+	r.NotFoundHandler = r.NewRoute().HandlerFunc(controller.NotFoundHandler).GetHandler()
 	return r
 }

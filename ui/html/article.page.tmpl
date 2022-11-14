@@ -1,8 +1,8 @@
 {{define "title"}}{{ .Title }}{{end}}
 
 {{define "main"}}
-  <div class="row g-5">
-    <div class="col-md-8">
+  <div class="row">
+    <div class="col-md-12">
       <article class="blog-post">
         <h2 class="blog-post-title">{{ .Title }}</h2>
         <p class="blog-post-meta">{{ .CreatedAt.Format "02.01.2006 15:04:05" }}{{ if .Authorized }} <a href="/admin/update/{{.ID}}">Edit</a> {{ end }}</p>

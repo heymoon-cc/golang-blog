@@ -3,9 +3,9 @@
 {{define "main"}}
   {{ if .Articles }}
       {{ range .Articles }}
-      <div class="row g-5">
-        <div class="col-md-8">
-          <article class="blog-post">
+      <div class="row">
+        <div class="col-md-12">
+          <article class="blog-post page">
             <h2 class="blog-post-title">{{ .Title }}</h2>
               {{ .Content }}
           </article>

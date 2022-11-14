@@ -29,12 +29,26 @@ func SetPages(newPages *map[string]string) {
 	pages = newPages
 }
 
+func TagExists(tagCode string) bool {
+	if _, ok := (*tags)[tagCode]; ok {
+		return true
+	}
+	return false
+}
+
 func GetTagName(tagCode string) string {
 	return (*tags)[tagCode]
 }
 
-func GetPageName(tagCode string) string {
-	return (*pages)[tagCode]
+func PageExists(pageName string) bool {
+	if _, ok := (*pages)[pageName]; ok {
+		return true
+	}
+	return false
+}
+
+func GetPageName(pageName string) string {
+	return (*pages)[pageName]
 }
 
 type View struct {

@@ -1,14 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~highlight.js/styles/base16/github.css";
 
-img, iframe {
-  max-width: calc(100vw - 25px);
-}
-
-#preview {
-  padding: 10px;
-  img {
-    max-width: 100%;
-    padding: 10px;
+article.blog-post {
+  iframe {
+    aspect-ratio: 1;
+    height: auto;
+    @media (min-width: 768px) {
+      aspect-ratio: 16/9;
+    }
+  }
+  .round {
+    border-radius: 50%;
   }
 }

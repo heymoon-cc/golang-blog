@@ -2,11 +2,11 @@ FROM golang:1.17 as builder
 WORKDIR /code
 ADD ./go.* /code/
 RUN go mod download
+ENV CGO_ENABLED=0
+ENV GOOS=linux
 ADD ./*.go /code/
 ADD ./controller /code/controller
 ADD ./model /code/model
-ENV CGO_ENABLED=0
-ENV GOOS=linux
 RUN go build -o blog
 
 FROM busybox as blog

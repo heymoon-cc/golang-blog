@@ -1,6 +1,15 @@
 {{define "title"}}{{if .Title}}{{ .Title }}{{ else }}Новая запись{{ end }}{{end}}
 
 {{define "main"}}
+  <style>
+    #preview {
+      padding: 10px;
+    }
+    #preview img {
+      max-width: 100%;
+      padding: 10px;
+    }
+  </style>
   <form id="save">
     <div class="row g-3">
       <div class="col-12">
